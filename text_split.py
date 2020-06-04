@@ -9,26 +9,26 @@ print('''
 ╚██╗ ██╔╝██╔══╝  ██╔══██╗  ╚██╔╝      ╚════██║██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝  
  ╚████╔╝ ███████╗██║  ██║   ██║       ███████║██║██║ ╚═╝ ██║██║     ███████╗███████╗
   ╚═══╝  ╚══════╝╚═╝  ╚═╝   ╚═╝       ╚══════╝╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝
-████████╗███████╗██╗  ██╗████████╗    ███████╗██████╗ ██╗     ██╗████████╗          
-╚══██╔══╝██╔════╝╚██╗██╔╝╚══██╔══╝    ██╔════╝██╔══██╗██║     ██║╚══██╔══╝          
-   ██║   █████╗   ╚███╔╝    ██║       ███████╗██████╔╝██║     ██║   ██║             
-   ██║   ██╔══╝   ██╔██╗    ██║       ╚════██║██╔═══╝ ██║     ██║   ██║             
-   ██║   ███████╗██╔╝ ██╗   ██║       ███████║██║     ███████╗██║   ██║             
-   ╚═╝   ╚══════╝╚═╝  ╚═╝   ╚═╝       ╚══════╝╚═╝     ╚══════╝╚═╝   ╚═╝             
-                                                                                     
+                                                                                    
+████████╗██╗  ██╗████████╗    ███████╗██████╗ ██╗     ██╗████████╗                  
+╚══██╔══╝╚██╗██╔╝╚══██╔══╝    ██╔════╝██╔══██╗██║     ██║╚══██╔══╝                  
+   ██║    ╚███╔╝    ██║       ███████╗██████╔╝██║     ██║   ██║                     
+   ██║    ██╔██╗    ██║       ╚════██║██╔═══╝ ██║     ██║   ██║                     
+██╗██║   ██╔╝ ██╗   ██║       ███████║██║     ███████╗██║   ██║                     
+╚═╝╚═╝   ╚═╝  ╚═╝   ╚═╝       ╚══════╝╚═╝     ╚══════╝╚═╝   ╚═╝                                                                       
 ''')
 
-# time.sleep(2.5)
+# time.sleep(2)
 os.system('cls' if os.name=='nt' else 'clear')
 
 init_path = input('Enter a input .txt PATH: ')
 while os.path.exists(init_path) == False:
-   print("Input PATH not found, try again")
+   print('Input PATH not found, try again')
    init_path = input('Enter a input .txt PATH: ')
 
 out_path = input('Enter a output .txt PATH: ')
 while os.path.exists(out_path) == False:
-   print("PATH not found, try again")
+   print('PATH not found, try again')
    out_path = input('Enter a out .txt PATH: ')
 
 aux = 1
@@ -37,9 +37,25 @@ for x in os.listdir(init_path):
    print(str(aux), " - ", x)
    aux += 1
 
-aux = input("Select a file number: ")
+aux = input('Select a file number: ')
 init_path = init_path + str(file_list[int(aux) - 1])
 
-archive = open(init_path, "r")
+try:
+   archive = open(init_path, "r")
+except:
+   print("Falha no engano")
+   #Chamar uma função aqui
 
-print(archive)
+archive_lines = archive.readlines()
+
+
+for x in archive_lines:
+   if x.find("-\n") > -1:
+      new_file = open
+
+
+def create_file(out_path, num, info):
+   out_path = out_path + str(num) + ".txt"
+   archive = open(out_path, "a")
+   archive.write(info)
+   archive.close()
