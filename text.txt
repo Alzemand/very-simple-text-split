@@ -9,6 +9,8 @@ mas
 n
 separe
 tudo
+
+
 de
 vez
 -------------
