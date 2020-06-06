@@ -47,16 +47,15 @@ except:
    #Chamar uma função aqui
 
 
-def create_file(out_path, num, file):
-   out_path = out_path + str(num) + ".txt"
-   archive = open(out_path, "a")
-   while True:
-      if file.readline().find('-\n') > -1:
-         num = num + 1
-         create_file(out_path, num, file) 
-      elif file.readline() == '':
-         return 'Ok'
-         archive.close()
-      else:
-         archive.write(file.readline())
+num_file = 1
+while True:
+   new_file = open(out_path + str(num_file) + ".txt", "a")
+   if archive.readline().find('-\n') > -1:
+      num_file = num_file + 1
+   elif archive.readline() == '':
+      new_file.close()
+      print("Sucess!")
+      break
+   else:
+      new_file.write(archive.readline())
    
