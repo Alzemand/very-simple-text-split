@@ -46,16 +46,17 @@ except:
    print("Falha no engano")
    #Chamar uma função aqui
 
+def create_file(out_path, num_file):
+   new_file = open(out_path + str(num_file) + ".txt", "w")
+   return new_file
 
 num_file = 1
-while True:
-   new_file = open(out_path + str(num_file) + ".txt", "a")
-   if archive.readline().find('-\n') > -1:
+new_file = create_file(out_path, num_file)
+
+for x in archive:
+   if x.find('-\n') > -1:
       num_file = num_file + 1
-   elif archive.readline() == '':
-      new_file.close()
-      print("Sucess!")
-      break
+      new_file = create_file(out_path, num_file)
    else:
-      new_file.write(archive.readline())
+      new_file.write(x)
    
