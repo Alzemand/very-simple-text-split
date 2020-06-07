@@ -43,20 +43,27 @@ init_path = init_path + str(file_list[int(aux) - 1])
 try:
    archive = open(init_path, "r")
 except:
-   print("Falha no engano")
-   #Chamar uma função aqui
+   print("File or Directory not found")
+   
 
 def create_file(out_path, num_file):
    new_file = open(out_path + str(num_file) + ".txt", "w")
    return new_file
 
-num_file = 1
-new_file = create_file(out_path, num_file)
 
-for x in archive:
-   if x.find('-\n') > -1:
-      num_file = num_file + 1
-      new_file = create_file(out_path, num_file)
-   else:
-      new_file.write(x)
-   
+def symbol(archive, out_path, symbol):
+   num_file = 1
+   new_file = create_file(out_path, num_file)
+   for x in archive:
+      if x.find(str(symbol) + '\n') > -1:
+         num_file = num_file + 1
+         new_file.close()
+         new_file = create_file(out_path, num_file)
+      else:
+         new_file.write(x)
+
+txt_symbol = input("Enter a symbol: ")
+
+symbol(archive, out_path, symbol)
+
+archive.close()
