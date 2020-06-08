@@ -37,18 +37,19 @@ def symbol(archive, out_path, symbol):
 def by_lines(archive, out_path, number): 
    num_file = 1
    new_file = create_file(out_path, num_file)
+   cont = 0
    for x in archive:
-      for y in range(number):
+      if cont <= number:
+         new_file.write(x)
+      else:
          num_file = num_file + 1
          new_file.close()
          new_file = create_file(out_path, num_file)
-      else:
-         new_file.write(x)
-
-
-
+         cont = number
+         number = number + number
+         
 def check_path(path):
-   if path[len(path)-1:] != "/":
+   if os.name=='nt':
       return path + "/"
    else:
       return path
@@ -94,6 +95,9 @@ opt = input("Option: ")
 if opt == '1':
    txt_symbol = input("Enter a symbol: ")
    symbol(archive, out_path, txt_symbol)
+elif opt == '4':
+   number = input("Enter a line number: ")
+   by_lines(archive, out_path, number)
 else:
    print("Caralho maluco")
 
