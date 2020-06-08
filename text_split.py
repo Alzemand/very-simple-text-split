@@ -1,5 +1,6 @@
 import os
 import time
+import sys 
 
 print('''
 
@@ -18,7 +19,41 @@ print('''
 ╚═╝╚═╝   ╚═╝  ╚═╝   ╚═╝       ╚══════╝╚═╝     ╚══════╝╚═╝   ╚═╝                                                                       
 ''')
 
-# time.sleep(2)
+def create_file(out_path, num_file):
+   new_file = open(out_path + str(num_file) + ".txt", "w")
+   return new_file
+
+def symbol(archive, out_path, symbol):
+   num_file = 1
+   new_file = create_file(out_path, num_file)
+   for x in archive:
+      if x.find(str(symbol) + '\n') > -1:
+         num_file = num_file + 1
+         new_file.close()
+         new_file = create_file(out_path, num_file)
+      else:
+         new_file.write(x)
+
+def by_lines(archive, out_path, number): 
+   num_file = 1
+   new_file = create_file(out_path, num_file)
+   for x in archive:
+      for y in range(number):
+         num_file = num_file + 1
+         new_file.close()
+         new_file = create_file(out_path, num_file)
+      else:
+         new_file.write(x)
+
+
+
+def check_path(path):
+   if path[len(path)-1:] != "/":
+      return path + "/"
+   else:
+      return path
+
+time.sleep(2)
 os.system('cls' if os.name=='nt' else 'clear')
 
 init_path = input('Enter a input .txt PATH: ')
@@ -44,26 +79,24 @@ try:
    archive = open(init_path, "r")
 except:
    print("File or Directory not found")
+   sys.exit()
    
+print('\n')
+print(
+"""Select a operation:
+1 - Use a Symbol for Splittig
+2 - Use Length for Splittig
+3 - Size Splittig
+4 - Separate by Lines
+5 - Use a Regex for Splittig""")
 
-def create_file(out_path, num_file):
-   new_file = open(out_path + str(num_file) + ".txt", "w")
-   return new_file
-
-
-def symbol(archive, out_path, symbol):
-   num_file = 1
-   new_file = create_file(out_path, num_file)
-   for x in archive:
-      if x.find(str(symbol) + '\n') > -1:
-         num_file = num_file + 1
-         new_file.close()
-         new_file = create_file(out_path, num_file)
-      else:
-         new_file.write(x)
-
-txt_symbol = input("Enter a symbol: ")
-
-symbol(archive, out_path, symbol)
+opt = input("Option: ")
+if opt == '1':
+   txt_symbol = input("Enter a symbol: ")
+   symbol(archive, out_path, txt_symbol)
+else:
+   print("Caralho maluco")
 
 archive.close()
+
+print("Finish!")
