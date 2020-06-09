@@ -37,16 +37,18 @@ def symbol(archive, out_path, symbol):
 def by_lines(archive, out_path, number): 
    num_file = 1
    new_file = create_file(out_path, num_file)
-   cont = 0
+   number = int(number)
+   increment = number
+   cont = 1
    for x in archive:
       if cont <= number:
          new_file.write(x)
+         cont = cont + 1
       else:
          num_file = num_file + 1
          new_file.close()
          new_file = create_file(out_path, num_file)
-         cont = number
-         number = number + number
+         number = number + increment
          
 def check_path(path):
    if os.name=='nt':
@@ -58,11 +60,13 @@ time.sleep(2)
 os.system('cls' if os.name=='nt' else 'clear')
 
 init_path = input('Enter a input .txt PATH: ')
+init_path = check_path(init_path)
 while os.path.exists(init_path) == False:
    print('Input PATH not found, try again')
    init_path = input('Enter a input .txt PATH: ')
 
 out_path = input('Enter a output .txt PATH: ')
+out_path = check_path(out_path)
 while os.path.exists(out_path) == False:
    print('PATH not found, try again')
    out_path = input('Enter a out .txt PATH: ')
@@ -86,10 +90,10 @@ print('\n')
 print(
 """Select a operation:
 1 - Use a Symbol for Splittig
-2 - Use Length for Splittig
-3 - Size Splittig
-4 - Separate by Lines
-5 - Use a Regex for Splittig""")
+2 - Size Splittig
+3 - Separate by Lines
+4 - Use a Regex for Splittig""")
+print("\n")
 
 opt = input("Option: ")
 if opt == '1':
@@ -99,7 +103,7 @@ elif opt == '4':
    number = input("Enter a line number: ")
    by_lines(archive, out_path, number)
 else:
-   print("Caralho maluco")
+   print("Why did you put an invalid option??? What's your problem???")
 
 archive.close()
 
