@@ -99,7 +99,7 @@ opt = input("Option: ")
 if opt == '1':
    txt_symbol = input("Enter a symbol: ")
    symbol(archive, out_path, txt_symbol)
-elif opt == '4':
+elif opt == '3':
    number = input("Enter a line number: ")
    by_lines(archive, out_path, number)
 else:
